@@ -34,7 +34,9 @@ function FunctionTienDien() {
   }
 
   // Làm tròn giá trị `thanhtienVAT` thành 2 chữ số thập phân
-  thanhTienVAT = thanhTienVAT.toFixed(2);
+  if (thanhTienVAT != -1 && thanhTienVAT != 0) {
+    thanhTienVAT = thanhTienVAT.toFixed(2);
+  }
 
   document.getElementById("thanhtien").innerHTML = thanhTienVAT;
 }
