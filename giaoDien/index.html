@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./index.css">
+    <script src="./index.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1 style="text-align: center;">Tính Tiền Điện</h1>
+        <div class="input-row">
+            <label for="chiSoCu">Chỉ số cũ:</label>
+            <input type="text" id="chiSoCu">
+        </div>
+        <div class="input-row">
+            <label for="chiSoMoi">Chỉ số mới:</label>
+            <input type="text" id="chiSoMoi">
+        </div>
+        <div class="btn"><button id="tinhTienDien" onclick="FunctionTienDien()">Tính Tiền Điện</button></div>
+        <div class="input-row" id="ketQuaTinhTien">
+            <label class="lblthanhtien" for="thanhtien">Tổng Số Tiền Điện Cần Thanh Toán Là:</label>
+            <text id="thanhtien"></text>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -11,44 +11,42 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class demo01 {
-//    dữ liệu đầu vào như thế nào? giống test case như bữa giờ mình làm ở tiết thực hành?
-//    test case: đăng nhập bao nhiêu lần?
-//    vậy khi test thì cần thông báo đăng nhập thành công hay không ở đâu? Hay có thể chụp hình hay là xuất
-//    ra màn hình console hay file excel hay file text?
 	static WebDriver driver;
 	private static List<TienDien> listTienDiens;
 
 	public static void main(String[] args) throws Exception {
-    	
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+		// Setup and configure the WebDriver
+		WebDriverManager.chromedriver().setup();
+		driver = new ChromeDriver();
 
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
-        driver.manage().window().maximize();
+		// Configure timeouts and maximize the window
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
+		driver.manage().window().maximize();
 
-        driver.navigate().to("http://127.0.0.1:5500/index.html");
+		// Navigate to a specific URL
+		driver.navigate().to("http://localhost:5500/giaoDien/");
 
-        //read file .xlsx
-        final String excelPath = "excel\\testCaseTienDien.xlsx";
+		// Read data from an Excel file
+		final String excelPath = "excel\\testCaseTienDien.xlsx";
 		listTienDiens = readExcelBaiTienDien.readExcel(excelPath);
 
-		//thuc hien test
-		for(TienDien td : listTienDiens) {
+		// Perform a test for a list of electricity bills
+		for (TienDien td : listTienDiens) {
 			functionTinhTienDien(td);
 		}
 
 //        Thread.sleep(5000);
-        driver.quit();
-        
-//        for(TienDien td : listTienDiens) {
-//			System.out.println(td);
-//		}
-        
-        writeExcelBaiTienDien.writeExcel(listTienDiens, excelPath);
-    }
+		
+		// Quit the WebDriver
+		driver.quit();
+
+		// Write data to an Excel file
+		writeExcelBaiTienDien.writeExcel(listTienDiens, excelPath);
+	}
 
 	private static void functionTinhTienDien(TienDien td) throws Exception {
+		// Find and interact with web elements
 		WebElement chiSoCu = driver.findElement(By.id("chiSoCu"));
 		chiSoCu.clear();
 		chiSoCu.sendKeys(td.getChiSoCu() + "");
@@ -64,6 +62,7 @@ public class demo01 {
 		double thanhTienDouble = Double.parseDouble(thanhTien.getText());
 		td.setThanhTien(thanhTienDouble);
 
+		// Sleep for 1 second (commented out)
 //		Thread.sleep(1000);
 
 	}
